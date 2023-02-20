@@ -22,7 +22,7 @@ userCommand
                 type: 'string'
             }
         },
-        handler: function (argv) {
+        handler(argv) {
             notes.addNote(argv.title, argv.body)
         }
     })
@@ -39,7 +39,7 @@ userCommand
                 type: 'string'
             }
         },
-        handler: function (argv) {
+        handler(argv) {
             notes.removeNote(argv.title)
         }
     })
@@ -49,7 +49,7 @@ userCommand
     .command({
         command: 'list',
         describe: 'List all notes',
-        handler: function () {
+        handler() {
             console.log('This is the handler to listing all notes')
         }
     })
@@ -59,7 +59,7 @@ userCommand
     .command({
         command: 'read',
         describe: 'Read a given note',
-        handler: function () {
+        handler() {
             console.log('This is the handler to reads one specific note')
         }
     })

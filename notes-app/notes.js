@@ -1,23 +1,22 @@
 import chalk from 'chalk'
 import * as fs from 'fs'
 
-const getNotes = function () {
-    return "Your notes..."
+const getNotes = () => {
+    console.log("This will list the notes in the future")
 }
+
 /**
  * Adds a new note to notes database.
  * 
  * @param {String} title 
  * @param {String} body 
  */
-const addNote = function (title, body) {
+const addNote = (title, body) => {
     // Load previous notes.
     const notes = loadNotes()
 
     // Look up for duplicated notes to avoid same titles.
-    const duplicatedNotes = notes.filter(function (note) {
-        return note.title === title
-    })
+    const duplicatedNotes = notes.filter((note) => note.title === title)
 
     // If there's any duplicated note.
     if (duplicatedNotes.length === 0) {
@@ -43,7 +42,7 @@ const addNote = function (title, body) {
  * 
  * @param {Array} notes 
  */
-const saveNotes = function (notes){
+const saveNotes = (notes) => {
     // Stringify notes received.
     const dataJSON = JSON.stringify(notes)
 
@@ -56,7 +55,7 @@ const saveNotes = function (notes){
  * 
  * @returns Parsed JSON of notes
  */
-const loadNotes = function () {
+const loadNotes = () => {
     try {
         const dataBuffer = fs.readFileSync('notes.json')
         const dataJSON = dataBuffer.toString()
@@ -71,14 +70,12 @@ const loadNotes = function () {
  * 
  * @param {String} title 
  */
-const removeNote = function(title) {
+const removeNote = (title) => {
     // Load existing notes.
     const notes = loadNotes();
     
     // Filter the loaded notes, removing if title found.
-    const notesToSave = notes.filter(function (note) {
-        return note.title !== title
-    })
+    const notesToSave = notes.filter((note) => note.title !== title)
 
     // Check if past notes list is greater than notes to save
     if (notes.length > notesToSave.length) {
