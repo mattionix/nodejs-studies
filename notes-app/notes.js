@@ -66,6 +66,15 @@ const loadNotes = () => {
 }
 
 /**
+ * Print all notes on the screen in a pretty interface.
+ */
+const listNotes = () => {
+    console.log(chalk.bgBlack.bold.underline('Your Notes'))
+
+    loadNotes().forEach(note => console.log ('[ ] ' + note.title + ' - ' + note.body));
+}
+
+/**
  * Given a note title, remove it from the database.
  * 
  * @param {String} title 
@@ -92,6 +101,7 @@ const removeNote = (title) => {
 
 export default {
     getNotes: getNotes,
+    listNotes: listNotes,
     addNote: addNote,
     removeNote: removeNote
 }

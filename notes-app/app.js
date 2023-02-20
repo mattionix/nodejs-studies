@@ -50,7 +50,7 @@ userCommand
         command: 'list',
         describe: 'List all notes',
         handler() {
-            console.log('This is the handler to listing all notes')
+            notes.listNotes()
         }
     })
 
