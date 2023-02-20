@@ -16,10 +16,10 @@ const addNote = (title, body) => {
     const notes = loadNotes()
 
     // Look up for duplicated notes to avoid same titles.
-    const duplicatedNotes = notes.filter((note) => note.title === title)
+    const duplicatedNote = notes.find((note) => note.title === title)
 
     // If there's any duplicated note.
-    if (duplicatedNotes.length === 0) {
+    if (!duplicatedNote) {
         // Add new note in the end of notes list.
         notes.push({
             title: title,
@@ -75,6 +75,20 @@ const listNotes = () => {
 }
 
 /**
+ * Print the note details, given its title.
+ * @param {String} title 
+ */
+const readNote = (title) => {
+    const note = loadNotes().find((note) => note.title === title)
+    if (note) {
+        console.log(chalk.bgBlack(note.title))
+        console.log(note.body)
+    } else {
+        console.log(chalk.bgRed('Oopps!'), ' We could not find any note called ' + title)
+    }
+}
+
+/**
  * Given a note title, remove it from the database.
  * 
  * @param {String} title 
@@ -102,6 +116,7 @@ const removeNote = (title) => {
 export default {
     getNotes: getNotes,
     listNotes: listNotes,
+    readNote: readNote,
     addNote: addNote,
     removeNote: removeNote
 }

@@ -58,9 +58,16 @@ userCommand
 userCommand
     .command({
         command: 'read',
-        describe: 'Read a given note',
-        handler() {
-            console.log('This is the handler to reads one specific note')
+        describe: 'Read a note given its title',
+        builder: {
+            title: {
+                description: "Note title",
+                demandOption: true,
+                type: 'string'
+            }
+        },
+        handler(argv) {
+            notes.readNote(argv.title)
         }
     })
 
