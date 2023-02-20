@@ -76,28 +76,21 @@ const removeNote = function(title) {
     const notes = loadNotes();
     
     // Filter the loaded notes, removing if title found.
-    let removedNotesCounter = 0
     const notesToSave = notes.filter(function (note) {
-        if (note.title === title) {
-            // If note found by title, increase removed counter
-            removedNotesCounter++
-            // return false to remove from notes list.
-            return false
-        }
-        return true
+        return note.title !== title
     })
 
-    // If there's note removed.
-    if (removedNotesCounter > 0) {
+    // Check if past notes list is greater than notes to save
+    if (notes.length > notesToSave.length) {
+        // Past notes is greater, so some note was removed.
         // Log to user.
         console.log(chalk.bgGreen.bold('Success!'), title + " note removed!")
 
         // Save new notes array.
         saveNotes(notesToSave)
-        return
+    } else {
+        console.log(chalk.bgRed.bold('Ooppss!'), "there's no note with called " + title + ":'(")
     }
-
-    console.log(chalk.bgRed.bold('Ooppss!'), "there's no note with called " + title + ":'(")
 }
 
 export default {
